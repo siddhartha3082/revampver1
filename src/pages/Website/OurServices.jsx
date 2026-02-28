@@ -1,0 +1,117 @@
+import React from "react";
+import ChakraWatermark from "../../components/ChakraWatermark";
+import { Helmet } from "react-helmet";
+import Header from "../../components/Website/Header";
+import Footer from "../../components/Footer";
+import Testimonials from "../../components/Testimonials";
+import SolveITNeeds from "../../components/Website/SolveITNeeds";
+import ServiceItemCard from "../../components/Website/ServiceItemCard";
+import { Link } from "react-router-dom";
+import { services } from "../../data/constant";
+
+const OurServices = () => {
+  return (
+    <div className="bg-transparent">
+      <ChakraWatermark />
+      <Helmet>
+        <title>Our Services — VIHAANG AI GLOBAL SERVICES PVT LTD</title>
+        <meta
+          name="description"
+          content="Explore the full range of AI, software development, blockchain, cloud, and digital services offered by Vihaang AI."
+        />
+      </Helmet>
+
+      <Header />
+
+      {/* ── PAGE BANNER ── */}
+      <div className="relative pt-32 pb-10 flex flex-col items-center justify-center text-center px-5">
+        <span className="text-xs font-bold uppercase tracking-widest text-secondary bg-secondary/10 border border-secondary/20 px-4 py-1 rounded-full mb-5">
+          What We Offer
+        </span>
+        <h1
+          className="font-extrabold leading-tight mb-3 text-center"
+          style={{ fontFamily: "Poppins, sans-serif", color: "#010C2A", fontSize: "clamp(1.6rem, 3.5vw, 2.6rem)" }}
+        >
+          Customized Services{" "}
+          <span className="bg-gradient-to-r from-secondary to-primary bg-clip-text text-transparent">
+            Built for Your Goals
+          </span>
+        </h1>
+        <div className="flex items-center gap-2 text-gray-400 text-sm mt-3">
+          <Link to="/" className="hover:text-secondary transition-colors">Home</Link>
+          <span>/</span>
+          <span className="text-secondary">Services</span>
+        </div>
+      </div>
+
+      {/* ── SERVICES GRID ── */}
+      <section id="services" className="wrapper py-12 md:py-20">
+        <div data-aos="fade-up" className="text-center mb-12">
+          <span className="section-label">Our Core Expertise</span>
+          <h2
+            className="text-[1.4rem] md:text-[2.4rem] font-extrabold mt-2 text-gray-900"
+            style={{ fontFamily: "Poppins, sans-serif" }}
+          >
+            Full-Spectrum Technology Solutions
+          </h2>
+          <p className="text-gray-500 text-sm mt-3 max-w-2xl mx-auto leading-relaxed">
+            At Vihaang AI, we specialize in delivering end-to-end technology services — combining
+            design thinking, engineering excellence, and deep domain knowledge to help you stay ahead.
+          </p>
+        </div>
+
+        <div
+          data-aos="fade-up"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+        >
+          {services.map((item) => (
+            <ServiceItemCard item={item} key={item.id} />
+          ))}
+        </div>
+      </section>
+
+      {/* ── WHY CHOOSE US (mini strip) ── */}
+      <section className="bg-gray-50 py-10 md:py-14">
+        <div className="wrapper">
+          <div data-aos="fade-up" className="text-center mb-10">
+            <span className="section-label">Why Vihaang AI</span>
+            <h2
+              className="text-[1.8rem] md:text-[2.2rem] font-extrabold mt-2 text-gray-900"
+              style={{ fontFamily: "Poppins, sans-serif" }}
+            >
+              What Makes Us Different
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              { number: "01", title: "On-Time Delivery",     desc: "Agile processes and clear timelines, every time." },
+              { number: "02", title: "Expert Teams",         desc: "Deep domain knowledge across every tech stack." },
+              { number: "03", title: "Transparent Pricing",  desc: "No hidden fees. Clear scopes, honest estimates." },
+              { number: "04", title: "Long-Term Support",    desc: "We stay with you well beyond the launch date." },
+            ].map((item, i) => (
+              <div
+                key={i}
+                data-aos="fade-up"
+                className="bg-white rounded-xl border border-gray-200 p-6 shadow-sm
+                           hover:shadow-md hover:border-secondary hover:-translate-y-1
+                           transition-all duration-300"
+              >
+                <span className="text-secondary font-extrabold text-xl" style={{ fontFamily: "Poppins, sans-serif" }}>
+                  {item.number}
+                </span>
+                <h3 className="font-bold text-gray-900 text-sm mt-3 mb-1">{item.title}</h3>
+                <p className="text-gray-500 text-xs leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Testimonials />
+      <SolveITNeeds />
+      <Footer />
+    </div>
+  );
+};
+
+export default OurServices;

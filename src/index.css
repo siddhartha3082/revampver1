@@ -1,0 +1,309 @@
+/* ─── FONTS ─────────────────────────────────────────────────────────────────
+   Switched to Inter — clean, modern, professional (used by top tech companies)
+   ─────────────────────────────────────────────────────────────────────────── */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&family=Poppins:wght@700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── BASE RESET ─────────────────────────────────────────────────────────── */
+* {
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+}
+
+.reset-html * {
+  all: revert;
+}
+
+:root {
+  @apply text-primary;
+}
+
+/* ─── GLOBAL — Light background, dark navy text ──────────────────────────── */
+html {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #010C2A;
+  background: linear-gradient(135deg,
+    #f0f7ff 0%,
+    #e8f4fd 20%,
+    #ffffff 40%,
+    #f0f7ff 60%,
+    #e0f0ff 80%,
+    #f8fbff 100%
+  );
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+p {
+  line-height: 1.75;
+  letter-spacing: 0.2px;
+}
+
+/* ─── CHAKRA WATERMARK — very faint so it doesn't distract ──────────────── */
+.chakra-watermark {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 0;                        /* lowered from 5 → 0 so cards sit above it */
+  pointer-events: none;
+  opacity: 0.02 !important;          /* very faint */
+  animation: chakraSpin 25s linear infinite;
+  width: 380px;
+  height: 380px;
+  filter: grayscale(100%) brightness(1.5);
+}
+
+@media (min-width: 768px) {
+  .chakra-watermark {
+    width: 600px;
+    height: 600px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .chakra-watermark {
+    width: 700px;
+    height: 700px;
+  }
+}
+
+/* ─── UTILITIES ──────────────────────────────────────────────────────────── */
+@layer utilities {
+
+  .wrapper {
+    @apply max-w-7xl mx-auto px-5 sm:px-8;
+  }
+
+  /* ── Headings ── */
+  .heading {
+    @apply text-[1.9rem] md:text-[2.6rem] leading-tight font-bold tracking-tight;
+    font-family: "Syne", sans-serif;
+    color: #010C2A;
+  }
+
+  .heading-2 {
+    @apply text-[1.5rem] md:text-[2rem] font-bold leading-tight tracking-tight;
+    font-family: "Syne", sans-serif;
+    color: #010C2A;
+  }
+
+  /* ── Buttons ── */
+  .primary-btn {
+    @apply inline-flex items-center justify-center gap-2
+           text-white text-sm font-semibold
+           px-6 py-3 rounded-lg
+           shadow-md hover:shadow-xl
+           hover:-translate-y-0.5
+           transition-all duration-200
+           cursor-pointer;
+    background: linear-gradient(135deg, #219BE4, #010C2A);
+  }
+
+  .primary-btn:hover {
+    background: linear-gradient(135deg, #010C2A, #219BE4);
+  }
+
+  .outline-btn {
+    @apply inline-flex items-center justify-center gap-2
+           border-2 border-secondary text-secondary
+           text-sm font-semibold
+           px-6 py-3 rounded-lg
+           hover:bg-secondary hover:text-white
+           transition-all duration-200
+           cursor-pointer;
+  }
+
+  /* ── Navigation active state ── */
+  .active-item {
+    @apply text-secondary font-semibold;
+  }
+
+  .link {
+    @apply cursor-pointer;
+  }
+
+  /* ── Error messages ── */
+  .error-message {
+    @apply text-red-600 text-xs h-4 mb-2;
+  }
+
+  /* ── Section label chip ── */
+  .section-label {
+    @apply inline-block text-xs font-bold uppercase tracking-widest
+           text-secondary bg-secondary/10 px-3 py-1 rounded-full mb-2;
+  }
+
+  /* ── Card base ── */
+  .card {
+    @apply bg-white rounded-xl border border-gray-100
+           shadow-sm hover:shadow-lg hover:-translate-y-1
+           transition-all duration-300;
+  }
+
+  /* ── Gradient text ── */
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent;
+  }
+}
+
+/* ─── BACKGROUND LANDING PAGE ────────────────────────────────────────────── */
+.landing-bg::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  background-image: url("../public/background-1.jpg");
+  background-size: cover;
+  background-position: right;
+  z-index: -1;
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+/* ─── FIX: SolveITNeeds / CTA sections — ensure text is white on dark bg ── */
+.bg-primary h2,
+.bg-primary p,
+.bg-primary span,
+[class*="from-primary"] h2,
+[class*="from-primary"] p {
+  color: inherit;
+}
+
+/* ─── FIX: Experience section numbers visibility ─────────────────────────── */
+.bg-\[#010C2A\] h2,
+.bg-primary h2 {
+  color: #ffffff !important;
+}
+
+/* ─── ANIMATIONS ─────────────────────────────────────────────────────────── */
+
+@keyframes chakraSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-18px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(33, 155, 228, 0.4); }
+  50%       { box-shadow: 0 0 0 12px rgba(33, 155, 228, 0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes spin {
+  0%,  100% { box-shadow: 0.2em 0px 0 0px currentcolor; }
+  12%        { box-shadow: 0.2em 0.2em 0 0 currentcolor; }
+  25%        { box-shadow: 0 0.2em 0 0px currentcolor; }
+  37%        { box-shadow: -0.2em 0.2em 0 0 currentcolor; }
+  50%        { box-shadow: -0.2em 0 0 0 currentcolor; }
+  62%        { box-shadow: -0.2em -0.2em 0 0 currentcolor; }
+  75%        { box-shadow: 0px -0.2em 0 0 currentcolor; }
+  87%        { box-shadow: 0.2em -0.2em 0 0 currentcolor; }
+}
+
+#hero-robot {
+  animation: float 5s ease-in-out infinite;
+}
+
+.primary-btn {
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* ─── SCROLLBAR ───────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #219BE4;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #010C2A;
+}
+
+/* ─── LOADING SPINNER ─────────────────────────────────────────────────────── */
+.spinner-parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  width: 100%;
+  height: 100%;
+}
+
+.loader {
+  transform: rotateZ(45deg);
+  perspective: 1000px;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  color: #fff;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+  transform: rotateX(70deg);
+  animation: 1s spin linear infinite;
+}
+.loader:after {
+  color: #219BE4;
+  transform: rotateY(70deg);
+  animation-delay: 0.4s;
+}
+
+.spin {
+  animation: 1s spin linear infinite;
+}
+
+/* ─── SELECTION COLOR ─────────────────────────────────────────────────────── */
+::selection {
+  background: #219BE4;
+  color: white;
+}
